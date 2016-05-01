@@ -1,43 +1,43 @@
 package io.grapebaba.hyperledger.fabric;
 
-import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.POST;
 import retrofit2.http.DELETE;
+import rx.Observable;
 
 /**
  *
  */
 public interface Fabric {
     @GET("chain")
-    Call<BlockchainInfo> getBlockchain();
+    Observable<BlockchainInfo> getBlockchain();
 
-    @GET("chain/blocks/{blockID}")
-    Call<Block> getBlock(@Path("blockID") String blockID);
+    @GET("chain/blocks/{index}")
+    Observable<Block> getBlock(@Path("index") int index);
 
     @POST("chaincode")
-    Call<ChaincodeOpSuccess> chaincode(@Body ChaincodeOpPayload chaincodeOpPayload);
+    Observable<ChaincodeOpSuccess> chaincode(@Body ChaincodeOpPayload chaincodeOpPayload);
 
     @GET("transactions/{uuid}")
-    Call<Transaction> getTransaction(@Path("uuid") String uuid);
+    Observable<Transaction> getTransaction(@Path("uuid") String uuid);
 
     @POST("registrar")
-    Call<OK> createRegistrar(@Body Secret secret);
+    Observable<OK> createRegistrar(@Body Secret secret);
 
     @GET("registrar/{enrollmentID}")
-    Call<OK> getRegistrar(@Path("enrollmentID") String enrollmentID);
+    Observable<OK> getRegistrar(@Path("enrollmentID") String enrollmentID);
 
     @DELETE("registrar/{enrollmentID}")
-    Call<OK> deleteRegistrar(@Path("enrollmentID") String enrollmentID);
+    Observable<OK> deleteRegistrar(@Path("enrollmentID") String enrollmentID);
 
     @GET("registrar/{enrollmentID}/ecert")
-    Call<OK> getRegistrarECERT(@Path("enrollmentID") String enrollmentID);
+    Observable<OK> getRegistrarECERT(@Path("enrollmentID") String enrollmentID);
 
     @GET("registrar/{enrollmentID}/tcert")
-    Call<OK> getRegistrarTCERT(@Path("enrollmentID") String enrollmentID);
+    Observable<OK> getRegistrarTCERT(@Path("enrollmentID") String enrollmentID);
 
     @GET("network/peers")
-    Call<PeersMessage> getNetworkPeers();
+    Observable<PeersMessage> getNetworkPeers();
 }

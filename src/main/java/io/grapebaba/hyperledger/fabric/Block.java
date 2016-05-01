@@ -22,5 +22,5 @@ public class Block {
 
     private String consensusMetadata;
 
-    private String nonHashData;
+    private NonHashData nonHashData;
 }
