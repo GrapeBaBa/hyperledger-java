@@ -1,2 +1,4 @@
 rootProject.name = 'hyperledger-java'
+include 'hyperledger-java-core'
+include 'hyperledger-java-examples'
 

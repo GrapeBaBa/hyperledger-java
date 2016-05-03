@@ -1,31 +1,48 @@
-group 'io.grapebaba'
-version '1.0-SNAPSHOT'
+/*
+Copyright 2016 281165273@qq.com
 
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'eclipse'
-apply plugin: 'nebula.provided-base'
+Licensed under the Apache License, Version 2.0 (the "License"); you may not
+use this file except in compliance with the License. You may obtain a copy of
+the License at
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+    [http://www.apache.org/licenses/LICENSE-2.0]
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile('com.squareup.retrofit2:retrofit:2.0.2',
-            'com.squareup.retrofit2:converter-gson:2.0.2',
-            'com.squareup.retrofit2:adapter-rxjava:2.0.2')
-    provided 'org.projectlombok:lombok:1.16.8'
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    testCompile 'com.squareup.retrofit2:retrofit-mock:2.0.2'
-}
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations under
+the License.
+*/
 
 buildscript {
     repositories { jcenter() }
-
     dependencies {
         classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:3.0.3'
+        classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:3.2.3'
     }
 }
+
+description = 'A java client SDK for hyperledger project'
+
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+    apply plugin: 'java'
+    apply plugin: 'nebula.provided-base'
+    apply plugin: 'nebula.netflixoss'
+}
+
+
+configure(subprojects) {
+    dependencies {
+        compile('junit:junit:4.12')
+    }
+
+    repositories {
+        jcenter()
+    }
+}
+
+
+
+
