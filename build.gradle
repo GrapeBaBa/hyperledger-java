@@ -15,24 +15,30 @@
  *
  */
 
+description = 'A java client SDK for hyperledger project'
+
 buildscript {
-    repositories { jcenter() }
+    repositories {
+        jcenter()
+    }
     dependencies {
-        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:3.0.3'
-        classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:3.2.3'
+        classpath 'com.netflix.nebula:nebula-project-plugin:3.1.0'
+        classpath 'com.netflix.nebula:nebula-release-plugin:4.0.1'
+        classpath 'com.netflix.nebula:nebula-bintray-plugin:3.3.4'
     }
 }
-
-description = 'A java client SDK for hyperledger project'
 
 allprojects {
     apply plugin: 'idea'
     apply plugin: 'eclipse'
     apply plugin: 'java'
-    apply plugin: 'nebula.provided-base'
-    apply plugin: 'nebula.netflixoss'
-}
+    apply plugin: 'nebula.project'
+    apply plugin: 'nebula.nebula-bintray'
+    apply plugin: 'nebula.nebula-release'
 
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
 
 configure(subprojects) {
     dependencies {
@@ -44,6 +50,13 @@ configure(subprojects) {
     }
 }
 
+contacts {
+    '281165273@qq.com' {
+        moniker 'Kai Chen'
+        github 'Grapebaba'
+        roles 'owner', 'notify'
+    }
+}
 
 
 
