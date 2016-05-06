@@ -17,7 +17,6 @@
 
 description = 'A java client SDK for hyperledger project'
 
-group 'io.grapebaba'
 
 buildscript {
     repositories {
@@ -39,6 +38,8 @@ allprojects {
     apply plugin: 'nebula.nebula-bintray'
     apply plugin: 'nebula.nebula-release'
     apply plugin: "com.github.hierynomus.license"
+
+    group 'io.grapebaba'
 
     sourceCompatibility = JavaVersion.VERSION_1_7
     targetCompatibility = JavaVersion.VERSION_1_7
