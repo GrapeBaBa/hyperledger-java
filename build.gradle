@@ -17,6 +17,8 @@
 
 description = 'A java client SDK for hyperledger project'
 
+group 'io.grapebaba'
+
 buildscript {
     repositories {
         jcenter()
