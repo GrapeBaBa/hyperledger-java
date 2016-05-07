@@ -52,6 +52,11 @@ allprojects {
         pkg {
             repo = 'maven'
             userOrg = 'grapebaba'
+            version {
+                name = rootProject.version
+                vcsTag = rootProject.version
+                attributes = [:]
+            }
         }
     }
 
