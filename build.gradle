@@ -58,7 +58,7 @@ allprojects {
     }
 
     bintray {
-        publications = ['grapebaba']
+        publications = ['maven']
         dryRun = false
         publish = true
         pkg {
