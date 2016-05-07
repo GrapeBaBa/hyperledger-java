@@ -67,6 +67,24 @@ contacts {
     }
 }
 
+bintray {
+    publications = ['grapebaba']
+    dryRun = false
+    publish = true
+    pkg {
+        repo = 'hyperledger-java'
+        userOrg = 'grapebaba'
+        name = rootProject.name
+        desc = rootProject.description
+        websiteUrl = 'https://github.com/GrapeBaBa/${rootProject.name}'
+        issueTrackerUrl = 'https://github.com/GrapeBaBa/${rootProject.name}/issues'
+        vcsUrl = 'https://github.com/GrapeBaBa/${rootProject.name}.git'
+        licenses = ['Apache-2.0']
+        labels = ['hyperledger', 'java']
+        publicDownloadNumbers = true
+    }
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = '2.10'
 }
