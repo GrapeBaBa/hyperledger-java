@@ -58,7 +58,6 @@ allprojects {
     }
 
     bintray {
-        publications = ['nebula']
         dryRun = false
         publish = true
         pkg {
