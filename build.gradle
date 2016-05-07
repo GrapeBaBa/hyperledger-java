@@ -43,6 +43,37 @@ allprojects {
 
     sourceCompatibility = JavaVersion.VERSION_1_7
     targetCompatibility = JavaVersion.VERSION_1_7
+
+    bintray {
+        publications = ['grapebaba']
+        dryRun = false
+        publish = true
+        pkg {
+            repo = 'hyperledger-java'
+            userOrg = 'grapebaba'
+            name = project.name
+            desc = project.description
+            websiteUrl = 'https://github.com/GrapeBaBa/${project.name}'
+            issueTrackerUrl = 'https://github.com/GrapeBaBa/${project.name}/issues'
+            vcsUrl = 'https://github.com/GrapeBaBa/${project.name}.git'
+            licenses = ['Apache-2.0']
+            labels = ['hyperledger', 'java']
+            publicDownloadNumbers = true
+        }
+    }
+
+    contacts {
+        '281165273@qq.com' {
+            moniker 'Kai Chen'
+            github 'Grapebaba'
+            roles 'owner', 'notify'
+        }
+    }
+
+
+    license {
+        header rootProject.file('LICENSE')
+    }
 }
 
 configure(subprojects) {
@@ -54,36 +85,8 @@ configure(subprojects) {
         jcenter()
     }
 
-    license {
-        header rootProject.file('LICENSE')
-    }
 }
 
-contacts {
-    '281165273@qq.com' {
-        moniker 'Kai Chen'
-        github 'Grapebaba'
-        roles 'owner', 'notify'
-    }
-}
-
-bintray {
-    publications = ['grapebaba']
-    dryRun = false
-    publish = true
-    pkg {
-        repo = 'hyperledger-java'
-        userOrg = 'grapebaba'
-        name = rootProject.name
-        desc = rootProject.description
-        websiteUrl = 'https://github.com/GrapeBaBa/${rootProject.name}'
-        issueTrackerUrl = 'https://github.com/GrapeBaBa/${rootProject.name}/issues'
-        vcsUrl = 'https://github.com/GrapeBaBa/${rootProject.name}.git'
-        licenses = ['Apache-2.0']
-        labels = ['hyperledger', 'java']
-        publicDownloadNumbers = true
-    }
-}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.10'
