@@ -49,7 +49,7 @@ allprojects {
         dryRun = false
         publish = true
         pkg {
-            repo = 'hyperledger-java'
+            repo = 'maven'
             userOrg = 'grapebaba'
             name = project.name
             desc = project.description
