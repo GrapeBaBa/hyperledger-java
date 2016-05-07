@@ -44,6 +44,36 @@ allprojects {
     sourceCompatibility = JavaVersion.VERSION_1_7
     targetCompatibility = JavaVersion.VERSION_1_7
 
+    contacts {
+        '281165273@qq.com' {
+            moniker 'Kai Chen'
+            github 'Grapebaba'
+            roles 'owner', 'notify'
+        }
+    }
+
+
+    license {
+        header rootProject.file('LICENSE')
+    }
+
+    bintray {
+        publications = ['grapebaba']
+        dryRun = false
+        publish = true
+        pkg {
+            repo = 'maven'
+            userOrg = 'grapebaba'
+            name = rootProject.name
+            desc = rootProject.description
+            websiteUrl = 'https://github.com/GrapeBaBa/${rootProject.name}'
+            issueTrackerUrl = 'https://github.com/GrapeBaBa/${rootProject.name}/issues'
+            vcsUrl = 'https://github.com/GrapeBaBa/${rootProject.name}.git'
+            licenses = ['Apache-2.0']
+            labels = ['hyperledger', 'java']
+            publicDownloadNumbers = true
+        }
+    }
 
 }
 
@@ -56,36 +86,9 @@ configure(subprojects) {
         jcenter()
     }
 
-    license {
-        header rootProject.file('LICENSE')
-    }
 }
 
-bintray {
-    publications = ['grapebaba']
-    dryRun = false
-    publish = true
-    pkg {
-        repo = 'maven'
-        userOrg = 'grapebaba'
-        name = rootProject.name
-        desc = rootProject.description
-        websiteUrl = 'https://github.com/GrapeBaBa/${rootProject.name}'
-        issueTrackerUrl = 'https://github.com/GrapeBaBa/${rootProject.name}/issues'
-        vcsUrl = 'https://github.com/GrapeBaBa/${rootProject.name}.git'
-        licenses = ['Apache-2.0']
-        labels = ['hyperledger', 'java']
-        publicDownloadNumbers = true
-    }
-}
 
-contacts {
-    '281165273@qq.com' {
-        moniker 'Kai Chen'
-        github 'Grapebaba'
-        roles 'owner', 'notify'
-    }
-}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.10'
