@@ -16,5 +16,5 @@
  */
 
 dependencies {
-    compile project(':hyperledger-java-rest')
+    compile project(':hyperledger-java-client')
 }

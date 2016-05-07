@@ -16,6 +16,6 @@
  */
 
 rootProject.name = 'hyperledger-java'
-include 'hyperledger-java-rest'
+include 'hyperledger-java-client'
 include 'hyperledger-java-examples'
 
