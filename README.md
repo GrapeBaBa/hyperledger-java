@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/GrapeBaBa/hyperledger-java.svg?branch=master)](https://travis-ci.org/GrapeBaBa/hyperledger-java)
+
 A java client SDK for Hyperledger
 ===============================
 
