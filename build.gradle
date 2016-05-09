@@ -55,6 +55,11 @@ allprojects {
         }
     }
 
+    bintrayUpload.onlyIf {
+        project.gradle.taskGraph.whenReady {
+            graph.hasTask(':final') || graph.hasTask(':candidate')
+        }
+    }
 }
 
 configure(subprojects) {
