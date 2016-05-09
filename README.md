@@ -2,7 +2,21 @@
 
 A java client SDK for Hyperledger
 ===============================
+> It is a java client SDK for the project [Hyperledger](https://github.com/hyperledger/fabric).
 
+How to get
+---------------------------------------------------------
+Now you can download 0.1.0-snapshot version from oss.jfrog.org, 0.1.0 final release will soon publish.
+
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url 'https://oss.jfrog.org/libs-snapshot' }
+    }
+    
+    dependencies {
+        compile 'io.grapebaba:hyperledger-java-client:0.1.0-SNAPSHOT'
+    }
 
 How to use
 ----------------------------------------------------------
