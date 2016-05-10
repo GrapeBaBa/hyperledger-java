@@ -39,7 +39,7 @@ allprojects {
     apply plugin: 'nebula.nebula-release'
     apply plugin: "com.github.hierynomus.license"
 
-    group 'io.grapebaba'
+    group 'me.grapebaba'
 
     sourceCompatibility = JavaVersion.VERSION_1_7
     targetCompatibility = JavaVersion.VERSION_1_7
