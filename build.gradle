@@ -23,11 +23,10 @@ buildscript {
         jcenter()
     }
     dependencies {
-//        classpath 'com.netflix.nebula:nebula-project-plugin:3.1.0'
-//        classpath 'com.netflix.nebula:nebula-release-plugin:4.0.1'
-//        classpath 'com.netflix.nebula:nebula-bintray-plugin:3.3.4'
-//        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
-        classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:3.2.3'
+        classpath 'com.netflix.nebula:nebula-project-plugin:3.1.0'
+        classpath 'com.netflix.nebula:nebula-release-plugin:4.0.1'
+        classpath 'com.netflix.nebula:nebula-bintray-plugin:3.3.4'
+        classpath "nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0"
     }
 }
 
@@ -35,11 +34,10 @@ allprojects {
     apply plugin: 'idea'
     apply plugin: 'eclipse'
     apply plugin: 'java'
-//    apply plugin: 'nebula.project'
-//    apply plugin: 'nebula.nebula-bintray'
-//    apply plugin: 'nebula.nebula-release'
-//    apply plugin: "com.github.hierynomus.license"
-    apply plugin: 'nebula.netflixoss'
+    apply plugin: 'nebula.project'
+    apply plugin: 'nebula.nebula-bintray'
+    apply plugin: 'nebula.nebula-release'
+    apply plugin: "com.github.hierynomus.license"
 
     group 'me.grapebaba'
 
@@ -57,11 +55,17 @@ allprojects {
         }
     }
 
-//    bintrayUpload.onlyIf {
-//        project.gradle.taskGraph.whenReady {
-//            graph.hasTask(':final') || graph.hasTask(':candidate')
-//        }
-//    }
+    bintrayUpload.onlyIf {
+        project.gradle.taskGraph.whenReady {
+            graph.hasTask(':final') || graph.hasTask(':candidate')
+        }
+    }
+
+    artifactoryPublish.onlyIf {
+        project.gradle.taskGraph.whenReady {
+            graph.hasTask(':snapshot') || graph.hasTask(':devSnapshot')
+        }
+    }
 
     publishing {
         publications {
