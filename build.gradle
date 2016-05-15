@@ -56,13 +56,13 @@ allprojects {
     }
 
     bintrayUpload.onlyIf {
-        project.gradle.taskGraph.whenReady {
+        rootProject.gradle.taskGraph.whenReady {
             graph.hasTask(':final') || graph.hasTask(':candidate')
         }
     }
 
     artifactoryPublish.onlyIf {
-        project.gradle.taskGraph.whenReady {
+        rootProject.gradle.taskGraph.whenReady {
             graph.hasTask(':snapshot') || graph.hasTask(':devSnapshot')
         }
     }
