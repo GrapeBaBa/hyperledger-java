@@ -49,23 +49,17 @@ allprojects {
     }
 
     bintray {
+        publications = ['grapebaba']
+
         pkg {
             repo = 'maven'
             userOrg = 'grapebaba'
+            websiteUrl = 'https://github.com/GrapeBaBa/hyperledger-java'
+            issueTrackerUrl = 'https://github.com/GrapeBaBa/hyperledger-java/issues'
+            vcsUrl = 'https://github.com/GrapeBaBa/hyperledger-java.git'
+            labels = ['hyperledger', 'java']
         }
     }
-
-//    bintrayUpload.onlyIf {
-//        gradle.taskGraph.whenReady { graph ->
-//            graph.hasTask('final') || graph.hasTask('candidate')
-//        }
-//    }
-//
-//    artifactoryPublish.onlyIf {
-//        gradle.taskGraph.whenReady { graph ->
-//            graph.hasTask('snapshot') || graph.hasTask('devSnapshot')
-//        }
-//    }
 
     gradle.taskGraph.whenReady { graph ->
         if (graph.allTasks.any { it.name.startsWith("snapshot") || it.name.startsWith("devSnapshot") }) {
@@ -74,8 +68,8 @@ allprojects {
         }
 
         if (graph.allTasks.any { it.name.startsWith("final") || it.name.startsWith("candidate") }) {
-            bintrayUpload.enabled = false
-            artifactoryPublish.enabled = true
+            bintrayUpload.enabled = true
+            artifactoryPublish.enabled = false
         }
     }
 
