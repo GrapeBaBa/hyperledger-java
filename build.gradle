@@ -60,7 +60,7 @@ allprojects {
             version{
                 gpg {
                     sign = true
-                    passphrase = 'grapebaba'
+                    passphrase = 'heatonn1'
                 }
             }
         }
