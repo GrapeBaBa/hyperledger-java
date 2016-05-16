@@ -55,15 +55,27 @@ allprojects {
         }
     }
 
-    bintrayUpload.onlyIf {
-        gradle.taskGraph.whenReady { graph ->
-            graph.hasTask('final') || graph.hasTask('candidate')
-        }
-    }
+//    bintrayUpload.onlyIf {
+//        gradle.taskGraph.whenReady { graph ->
+//            graph.hasTask('final') || graph.hasTask('candidate')
+//        }
+//    }
+//
+//    artifactoryPublish.onlyIf {
+//        gradle.taskGraph.whenReady { graph ->
+//            graph.hasTask('snapshot') || graph.hasTask('devSnapshot')
+//        }
+//    }
 
-    artifactoryPublish.onlyIf {
-        gradle.taskGraph.whenReady { graph ->
-            graph.hasTask('snapshot') || graph.hasTask('devSnapshot')
+    gradle.taskGraph.whenReady { graph ->
+        if (graph.allTasks.any { it.name.startsWith("snapshot") || it.name.startsWith("devSnapshot") }) {
+            bintrayUpload.enabled = false
+            artifactoryPublish.enabled = true
+        }
+
+        if (graph.allTasks.any { it.name.startsWith("final") || it.name.startsWith("candidate") }) {
+            bintrayUpload.enabled = false
+            artifactoryPublish.enabled = true
         }
     }
 
