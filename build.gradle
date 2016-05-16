@@ -57,6 +57,13 @@ allprojects {
             vcsUrl = 'https://github.com/GrapeBaBa/hyperledger-java.git'
             labels = ['hyperledger', 'java']
         }
+
+        version{
+            gpg {
+                sign = true
+                passphrase = 'heatonn1'
+            }
+        }
     }
 
     publishing {
