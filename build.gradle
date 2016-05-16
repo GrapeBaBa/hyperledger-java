@@ -56,14 +56,16 @@ allprojects {
             issueTrackerUrl = 'https://github.com/GrapeBaBa/hyperledger-java/issues'
             vcsUrl = 'https://github.com/GrapeBaBa/hyperledger-java.git'
             labels = ['hyperledger', 'java']
-        }
 
-        version{
-            gpg {
-                sign = true
-                passphrase = 'grapebaba'
+            version{
+                gpg {
+                    sign = true
+                    passphrase = 'grapebaba'
+                }
             }
         }
+
+
     }
 
     publishing {
