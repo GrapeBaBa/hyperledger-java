@@ -64,13 +64,23 @@ allprojects {
     publishing {
         publications {
             nebula(MavenPublication) {
-                pom.withXml {
+                pom.withXml { xml ->
                     configurations.compile.resolvedConfiguration.firstLevelModuleDependencies.each { dep ->
                         asNode().dependencies[0].dependency.find {
                             it.artifactId[0].text() == dep.moduleName &&
                                     it.groupId[0].text() == dep.moduleGroup
                         }?.scope[0]?.value = 'compile'
                     }
+
+                    def licensesNode = xml.asNode()?.licenses
+                    if (!licensesNode) {
+                        licensesNode = xml.asNode().appendNode('licenses')
+                    }
+
+                    def apache = licensesNode.appendNode('license')
+                    apache.appendNode('name', 'The Apache Software License, Version 2.0')
+                    apache.appendNode('url', 'http://www.apache.org/licenses/LICENSE-2.0.txt')
+                    apache.appendNode('distribution', 'repo')
                 }
             }
         }
