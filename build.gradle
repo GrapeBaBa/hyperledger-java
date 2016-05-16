@@ -99,12 +99,12 @@ task wrapper(type: Wrapper) {
 }
 
 gradle.taskGraph.whenReady { graph ->
-    if (graph.hasTask("snapshot") || graph.hasTask("devSnapshot")) {
+    if (graph.hasTask(":snapshot") || graph.hasTask(":devSnapshot")) {
         bintrayUpload.enabled = false
         artifactoryPublish.enabled = true
     }
 
-    if (graph.hasTask("final") || graph.hasTask("candidate")) {
+    if (graph.hasTask(":final") || graph.hasTask(":candidate")) {
         bintrayUpload.enabled = true
         artifactoryPublish.enabled = false
     }
