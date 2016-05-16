@@ -73,6 +73,18 @@ allprojects {
             }
         }
     }
+
+    gradle.taskGraph.whenReady { graph ->
+        if (graph.hasTask(":snapshot") || graph.hasTask(":devSnapshot")) {
+            bintrayUpload.enabled = false
+            artifactoryPublish.enabled = true
+        }
+
+        if (graph.hasTask(":final") || graph.hasTask(":candidate")) {
+            bintrayUpload.enabled = true
+            artifactoryPublish.enabled = false
+        }
+    }
 }
 
 configure(subprojects) {
@@ -98,14 +110,3 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
-gradle.taskGraph.whenReady { graph ->
-    if (graph.hasTask(":snapshot") || graph.hasTask(":devSnapshot")) {
-        bintrayUpload.enabled = false
-        artifactoryPublish.enabled = true
-    }
-
-    if (graph.hasTask(":final") || graph.hasTask(":candidate")) {
-        bintrayUpload.enabled = true
-        artifactoryPublish.enabled = false
-    }
-}
