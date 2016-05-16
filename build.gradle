@@ -56,13 +56,13 @@ allprojects {
     }
 
     bintrayUpload.onlyIf {
-        rootProject.gradle.taskGraph.whenReady {
+        gradle.taskGraph.whenReady { graph ->
             graph.hasTask('final') || graph.hasTask('candidate')
         }
     }
 
     artifactoryPublish.onlyIf {
-        rootProject.gradle.taskGraph.whenReady {
+        gradle.taskGraph.whenReady { graph ->
             graph.hasTask('snapshot') || graph.hasTask('devSnapshot')
         }
     }
@@ -103,6 +103,6 @@ contacts {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.13'
+    gradleVersion = '2.3'
 }
 
