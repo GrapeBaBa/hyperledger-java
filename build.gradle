@@ -49,8 +49,6 @@ allprojects {
     }
 
     bintray {
-        publications = ['grapebaba']
-
         pkg {
             repo = 'maven'
             userOrg = 'grapebaba'
@@ -60,8 +58,6 @@ allprojects {
             labels = ['hyperledger', 'java']
         }
     }
-
-
 
     publishing {
         publications {
@@ -103,12 +99,12 @@ task wrapper(type: Wrapper) {
 }
 
 gradle.taskGraph.whenReady { graph ->
-    if (graph.allTasks.any { it.name.startsWith("snapshot") || it.name.startsWith("devSnapshot") }) {
+    if (graph.hasTask("snapshot") || graph.hasTask("devSnapshot")) {
         bintrayUpload.enabled = false
         artifactoryPublish.enabled = true
     }
 
-    if (graph.allTasks.any { it.name.startsWith("final") || it.name.startsWith("candidate") }) {
+    if (graph.hasTask("final") || graph.hasTask("candidate")) {
         bintrayUpload.enabled = true
         artifactoryPublish.enabled = false
     }
