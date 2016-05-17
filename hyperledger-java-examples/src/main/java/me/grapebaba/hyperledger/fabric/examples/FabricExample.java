@@ -15,7 +15,7 @@
  *
  */
 
-package me.grapebaba.hyperledger.examples;
+package me.grapebaba.hyperledger.fabric.examples;
 
 import me.grapebaba.hyperledger.fabric.ErrorResolver;
 import me.grapebaba.hyperledger.fabric.Fabric;

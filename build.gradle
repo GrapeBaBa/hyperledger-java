@@ -14,9 +14,7 @@
  * limitations under the License.
  *
  */
-
 description = 'A java client SDK for hyperledger project'
-
 
 buildscript {
     repositories {
@@ -57,8 +55,6 @@ allprojects {
             vcsUrl = 'https://github.com/GrapeBaBa/hyperledger-java.git'
             labels = ['hyperledger', 'java']
         }
-
-
     }
 
     publishing {
@@ -107,7 +103,6 @@ configure(subprojects) {
     repositories {
         jcenter()
     }
-
 }
 
 contacts {
