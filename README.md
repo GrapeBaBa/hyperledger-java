@@ -1,26 +1,19 @@
+Hyperledger-java
+=======
 [![Build Status](https://travis-ci.org/GrapeBaBa/hyperledger-java.svg?branch=master)](https://travis-ci.org/GrapeBaBa/hyperledger-java)
 
-A java client SDK for Hyperledger
-===============================
-> It is a java client SDK for the project [Hyperledger](https://github.com/hyperledger/fabric).
+It is a java client SDK for the project [Hyperledger](https://github.com/hyperledger/fabric).
 
-How to get
----------------------------------------------------------
-Now you can download 0.1.0-snapshot version from oss.jfrog.org, 0.1.0 final release will soon publish.
+Getting Started
+==========
+You can find some common examples created using hyperledger-java-client in [an example project](https://github.com/GrapeBaBa/hyperledger-java/tree/master/hyperledger-java-examples)
 
-    repositories {
-        mavenCentral()
-        jcenter()
-        maven { url 'https://oss.jfrog.org/libs-snapshot' }
-    }
-    
-    dependencies {
-        compile 'io.grapebaba:hyperledger-java-client:0.1.0-SNAPSHOT'
-    }
 
-How to use
-----------------------------------------------------------
+Example
+==========
 
+```java
+ 
     Fabric FABRIC = Hyperledger.fabric("http://localhost:3000/")
     
     FABRIC.getNetworkPeers().subscribe(new Action1<PeersMessage>() {
@@ -46,16 +39,62 @@ How to use
                   System.out.printf("Error message:%s\n", error.getError());
               }
           });
-          
-Example
----------------------------------------------------------
-[An example project](https://github.com/GrapeBaBa/hyperledger-java/tree/master/hyperledger-java-examples)
-                            
-How to build
-----------------------------------------------------------
-    cd hyperledger-java
-    ./gradlew build
+```
 
-Issues
-----------------------------------------------------------
-[Report issues](https://github.com/GrapeBaBa/hyperledger-java/issues)
+## Binaries
+
+Binaries and dependency information for Maven, Ivy, Gradle and others can be found at [http://search.maven.org](http://search.maven.org/#search|ga|1|hyperledger-java-client).
+
+Example for Maven:
+
+```xml
+<dependency>
+    <groupId>me.grapebaba</groupId>
+    <artifactId>hyperledger-java-client</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+and for Ivy:
+
+```xml
+<dependency org="me.grapebaba" name="hyperledger-java-client" rev="0.1.0" />
+```
+and for Gradle:
+
+```groovy
+compile 'me.grapebaba:hyperledger-java-client:0.1.0'
+```
+
+## Build
+
+To build:
+
+```
+$ git clone git@github.com:GrapeBaBa/hyperledger-java.git
+$ cd hyperledger-java/
+$ ./gradlew build
+```
+
+
+## Bugs and Feedback
+
+For bugs, questions and discussions please use the [Github Issues](https://github.com/GrapeBaBa/hyperledger-java/issues).
+
+
+## LICENSE
+
+Copyright 2016 281165273@qq.com
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
