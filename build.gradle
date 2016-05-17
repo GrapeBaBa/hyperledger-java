@@ -54,6 +54,11 @@ allprojects {
             issueTrackerUrl = 'https://github.com/GrapeBaBa/hyperledger-java/issues'
             vcsUrl = 'https://github.com/GrapeBaBa/hyperledger-java.git'
             labels = ['hyperledger', 'java']
+
+            version {
+                name = project.version
+                vcsTag = project.version
+            }
         }
     }
 
