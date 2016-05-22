@@ -18,8 +18,6 @@
 package me.grapebaba.hyperledger.fabric.models;
 
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Enum of confidential level.
  */

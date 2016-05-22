@@ -22,6 +22,9 @@ import me.grapebaba.hyperledger.fabric.Fabric;
 import me.grapebaba.hyperledger.fabric.Hyperledger;
 import me.grapebaba.hyperledger.fabric.models.*;
 import me.grapebaba.hyperledger.fabric.models.Error;
+import okhttp3.logging.HttpLoggingInterceptor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import rx.Observable;
 import rx.functions.Action1;
 import rx.functions.Func1;
@@ -34,8 +37,15 @@ import java.util.concurrent.TimeUnit;
  * Fabric API endpoint usage.
  */
 public class FabricExample {
+    private static final HttpLoggingInterceptor HTTP_LOGGING_INTERCEPTOR = new HttpLoggingInterceptor();
 
-    private static final Fabric FABRIC = Hyperledger.fabric("http://localhost:3000/");
+    static {
+        HTTP_LOGGING_INTERCEPTOR.setLevel(HttpLoggingInterceptor.Level.BODY);
+    }
+
+    private static final Fabric FABRIC = Hyperledger.fabric("http://localhost:3000/", HTTP_LOGGING_INTERCEPTOR);
+
+    private static final Logger LOG = LoggerFactory.getLogger(FabricExample.class);
 
     public static void main(String[] args) throws Exception {
         FABRIC.chaincode(
@@ -55,6 +65,7 @@ public class FabricExample {
                                                         .args(Arrays.asList("a", "100", "b", "200"))
                                                         .build())
                                         .secureContext("jim")
+                                        .type(ChaincodeSpec.Type.GOLANG)
                                         .build())
                         .build())
                 .subscribe(new Action1<ChaincodeOpResult>() {
@@ -81,6 +92,7 @@ public class FabricExample {
                                                         .args(Arrays.asList("a", "b", "10"))
                                                         .build())
                                         .secureContext("jim")
+                                        .type(ChaincodeSpec.Type.GOLANG)
                                         .build())
                         .build())
                 .flatMap(new Func1<ChaincodeOpResult, Observable<Transaction>>() {
@@ -120,6 +132,7 @@ public class FabricExample {
                                                         .args(Collections.singletonList("b"))
                                                         .build())
                                         .secureContext("jim")
+                                        .type(ChaincodeSpec.Type.GOLANG)
                                         .build())
                         .build())
                 .subscribe(new Action1<ChaincodeOpResult>() {
@@ -146,6 +159,7 @@ public class FabricExample {
                                                         .args(Collections.singletonList("c"))
                                                         .build())
                                         .secureContext("jim")
+                                        .type(ChaincodeSpec.Type.GOLANG)
                                         .build())
                         .build())
                 .subscribe(new Action1<ChaincodeOpResult>() {

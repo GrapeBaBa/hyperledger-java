@@ -22,6 +22,8 @@ import me.grapebaba.hyperledger.fabric.models.ChaincodeSpec;
 import me.grapebaba.hyperledger.fabric.models.ConfidentialityLevel;
 import me.grapebaba.hyperledger.fabric.models.PeerEndpoint;
 import me.grapebaba.hyperledger.fabric.models.Transaction;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -59,6 +61,28 @@ public final class Hyperledger {
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(CALL_ADAPTER_FACTORY)
                 .addConverterFactory(CONVERTER_FACTORY)
+                .build()
+                .create(Fabric.class);
+    }
+
+    /**
+     * Create fabric API endpoint from base url and interceptors.
+     *
+     * @param baseUrl      baseUrl
+     * @param interceptors interceptors
+     * @return Fabric API endpoint.
+     */
+    public static Fabric fabric(String baseUrl, Interceptor... interceptors) {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        for (Interceptor interceptor : interceptors) {
+            builder.addInterceptor(interceptor);
+        }
+
+        return new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addCallAdapterFactory(CALL_ADAPTER_FACTORY)
+                .addConverterFactory(CONVERTER_FACTORY)
+                .client(builder.build())
                 .build()
                 .create(Fabric.class);
     }
