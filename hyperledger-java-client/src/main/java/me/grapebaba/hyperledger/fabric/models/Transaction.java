@@ -33,12 +33,11 @@ public class Transaction {
      * Model of transaction type.
      */
     public enum Type {
-        @SerializedName("0")
-        UNDEFINED, @SerializedName("1")
-        CHAINCODE_DEPLOY, @SerializedName("2")
-        CHAINCODE_INVOKE, @SerializedName("3")
-        CHAINCODE_QUERY, @SerializedName("4")
-        CHAINCODE_TERMINATE;
+        UNDEFINED,
+        CHAINCODE_DEPLOY,
+        CHAINCODE_INVOKE,
+        CHAINCODE_QUERY,
+        CHAINCODE_TERMINATE
     }
 
     private Type type;

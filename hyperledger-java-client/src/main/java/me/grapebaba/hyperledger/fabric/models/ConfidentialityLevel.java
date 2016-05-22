@@ -24,8 +24,6 @@ import com.google.gson.annotations.SerializedName;
  * Enum of confidential level.
  */
 public enum ConfidentialityLevel {
-    @SerializedName("0")
     PUBLIC,
-    @SerializedName("1")
     CONFIDENTIAL
 }

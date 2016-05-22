@@ -33,10 +33,9 @@ public class PeerEndpoint {
      * Peer endpoint type.
      */
     public enum Type {
-        @SerializedName("0")
-        UNDEFINED, @SerializedName("1")
-        VALIDATOR, @SerializedName("2")
-        NON_VALIDATOR;
+        UNDEFINED,
+        VALIDATOR,
+        NON_VALIDATOR
     }
 
     @SerializedName("ID")
