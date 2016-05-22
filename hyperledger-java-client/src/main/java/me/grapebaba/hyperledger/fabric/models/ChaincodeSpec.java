@@ -33,10 +33,9 @@ public class ChaincodeSpec {
      * Chaincode type.
      */
     public enum Type {
-        @SerializedName("0")
-        UNDEFINED, @SerializedName("1")
-        GOLANG, @SerializedName("2")
-        NODE;
+        UNDEFINED,
+        GOLANG,
+        NODE
     }
 
     private Type type;

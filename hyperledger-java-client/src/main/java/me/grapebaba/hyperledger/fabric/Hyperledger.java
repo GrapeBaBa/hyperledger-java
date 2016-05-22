@@ -17,6 +17,11 @@
 
 package me.grapebaba.hyperledger.fabric;
 
+import com.google.gson.GsonBuilder;
+import me.grapebaba.hyperledger.fabric.models.ChaincodeSpec;
+import me.grapebaba.hyperledger.fabric.models.ConfidentialityLevel;
+import me.grapebaba.hyperledger.fabric.models.PeerEndpoint;
+import me.grapebaba.hyperledger.fabric.models.Transaction;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -36,7 +41,12 @@ public final class Hyperledger {
     /**
      * Converter factory.
      */
-    static final Converter.Factory CONVERTER_FACTORY = GsonConverterFactory.create();
+    static final Converter.Factory CONVERTER_FACTORY = GsonConverterFactory.create(new GsonBuilder()
+            .registerTypeAdapter(ChaincodeSpec.Type.class, new ChaincodeSpecTypeEnumTypeAdapter())
+            .registerTypeAdapter(ConfidentialityLevel.class, new ConfidentialityLevelEnumTypeAdapter())
+            .registerTypeAdapter(PeerEndpoint.Type.class, new PeerEndpointTypeEnumTypeAdapter())
+            .registerTypeAdapter(Transaction.Type.class, new TransactionTypeEnumTypeAdapter())
+            .create());
 
     /**
      * Create fabric API endpoint from base url.
