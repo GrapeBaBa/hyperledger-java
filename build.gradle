@@ -43,7 +43,7 @@ allprojects {
     targetCompatibility = JavaVersion.VERSION_1_7
 
     license {
-        header rootProject.file('LICENSE')
+        header rootProject.file('HEADER')
     }
 
     bintray {
