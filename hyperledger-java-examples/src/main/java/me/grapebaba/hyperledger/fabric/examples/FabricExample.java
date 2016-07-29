@@ -43,11 +43,55 @@ public class FabricExample {
         HTTP_LOGGING_INTERCEPTOR.setLevel(HttpLoggingInterceptor.Level.BODY);
     }
 
-    private static final Fabric FABRIC = Hyperledger.fabric("http://localhost:3000/", HTTP_LOGGING_INTERCEPTOR);
+    private static final Fabric FABRIC = Hyperledger.fabric("http://localhost:5000", HTTP_LOGGING_INTERCEPTOR);
 
     private static final Logger LOG = LoggerFactory.getLogger(FabricExample.class);
 
     public static void main(String[] args) throws Exception {
+        FABRIC.createRegistrar(
+                Secret.builder()
+                        .enrollId("jim")
+                        .enrollSecret("6avZQLwcUe9b")
+                        .build())
+                .subscribe(new Action1<OK>() {
+                    @Override
+                    public void call(OK ok) {
+                        System.out.printf("Create registrar ok message:%s\n", ok);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        Error error = ErrorResolver.resolve(throwable, Error.class);
+                        System.out.printf("Error message:%s\n", error);
+                    }
+                });
+
+        FABRIC.getRegistrar("jim")
+                .subscribe(new Action1<OK>() {
+                    @Override
+                    public void call(OK ok) {
+                        System.out.printf("Get registrar ok message:%s\n", ok);
+                    }
+                });
+
+        FABRIC.getRegistrarECERT("jim")
+                .subscribe(new Action1<OK>() {
+                    @Override
+                    public void call(OK ok) {
+                        System.out.printf("Get registrar ecert ok message:%s\n", ok);
+                    }
+                });
+
+        FABRIC.getRegistrarTCERT("jim")
+                .subscribe(new Action1<OK1>() {
+                    @Override
+                    public void call(OK1 ok) {
+                        for (String okString : ok.getOk()) {
+                            System.out.printf("Get registrar tcert ok message:%s\n", okString);
+                        }
+                    }
+                });
+
         FABRIC.chaincode(
                 ChaincodeOpPayload.builder()
                         .jsonrpc("2.0")
@@ -102,7 +146,7 @@ public class FabricExample {
                         try {
                             TimeUnit.SECONDS.sleep(3L);
                         } catch (InterruptedException e) {
-
+                            e.printStackTrace();
                         }
                         return FABRIC.getTransaction(chaincodeOpResult.getResult().getMessage());
                     }
@@ -217,13 +261,6 @@ public class FabricExample {
             }
         });
 
-        FABRIC.deleteRegistrar("lukas").subscribe(new Action1<OK>() {
-            @Override
-            public void call(OK ok) {
-                System.out.printf("Delete registrar ok message:%s\n", ok);
-            }
-        });
-
         FABRIC.createRegistrar(
                 Secret.builder()
                         .enrollId("lukas")
@@ -242,50 +279,12 @@ public class FabricExample {
                     }
                 });
 
-        FABRIC.createRegistrar(
-                Secret.builder()
-                        .enrollId("jim")
-                        .enrollSecret("6avZQLwcUe9b")
-                        .build())
-                .subscribe(new Action1<OK>() {
-                    @Override
-                    public void call(OK ok) {
-                        System.out.printf("Create registrar ok message:%s\n", ok);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        Error error = ErrorResolver.resolve(throwable, Error.class);
-                        System.out.printf("Error message:%s\n", error);
-                    }
-                });
-
-        FABRIC.getRegistrar("jim")
-                .subscribe(new Action1<OK>() {
-                    @Override
-                    public void call(OK ok) {
-                        System.out.printf("Get registrar ok message:%s\n", ok);
-                    }
-                });
-
-        FABRIC.getRegistrarECERT("jim")
-                .subscribe(new Action1<OK>() {
-                    @Override
-                    public void call(OK ok) {
-                        System.out.printf("Get registrar ecert ok message:%s\n", ok);
-                    }
-                });
-
-        FABRIC.getRegistrarTCERT("jim")
-                .subscribe(new Action1<OK1>() {
-                    @Override
-                    public void call(OK1 ok) {
-                        for (String okString : ok.getOk()) {
-                            System.out.printf("Get registrar tcert ok message:%s\n", okString);
-                        }
-                    }
-                });
-
+        FABRIC.deleteRegistrar("jim").subscribe(new Action1<OK>() {
+            @Override
+            public void call(OK ok) {
+                System.out.printf("Delete registrar ok message:%s\n", ok);
+            }
+        });
 
     }
 }
