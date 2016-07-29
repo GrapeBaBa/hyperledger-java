@@ -51,18 +51,18 @@ Example for Maven:
 <dependency>
     <groupId>me.grapebaba</groupId>
     <artifactId>hyperledger-java-client</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
 </dependency>
 ```
 and for Ivy:
 
 ```xml
-<dependency org="me.grapebaba" name="hyperledger-java-client" rev="0.1.1" />
+<dependency org="me.grapebaba" name="hyperledger-java-client" rev="0.1.2" />
 ```
 and for Gradle:
 
 ```groovy
-compile 'me.grapebaba:hyperledger-java-client:0.1.1'
+compile 'me.grapebaba:hyperledger-java-client:0.1.2'
 ```
 
 ## Build
