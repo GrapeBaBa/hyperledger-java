@@ -43,7 +43,7 @@ public class FabricTest {
     @Before
     public void setUp() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:3000")
+                .baseUrl("http://localhost:5000")
                 .addCallAdapterFactory(Hyperledger.CALL_ADAPTER_FACTORY)
                 .addConverterFactory(Hyperledger.CONVERTER_FACTORY)
                 .build();

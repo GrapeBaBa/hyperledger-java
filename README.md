@@ -14,7 +14,7 @@ Example
 
 ```java
  
-    Fabric FABRIC = Hyperledger.fabric("http://localhost:3000/")
+    Fabric FABRIC = Hyperledger.fabric("http://localhost:5000/")
     
     FABRIC.getNetworkPeers().subscribe(new Action1<PeersMessage>() {
         @Override
